@@ -18,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/gamer-1478/syntax-prelims/issues"
   },
-  "homepage": "https://github.com/gamer-1478/syntax-prelims#readme"
+  "homepage": "https://github.com/gamer-1478/syntax-prelims#readme",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.2",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^6.1.3"
+  }
 }
