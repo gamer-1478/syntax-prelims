@@ -1,0 +1,22 @@
+{
+  "name": "syntax-prelims",
+  "version": "1.0.0",
+  "description": "syntax-prelims node.js app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamer-1478/syntax-prelims.git"
+  },
+  "keywords": [
+    "syntax-prelims"
+  ],
+  "author": "gamer-1478, AlightKnight343",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gamer-1478/syntax-prelims/issues"
+  },
+  "homepage": "https://github.com/gamer-1478/syntax-prelims#readme"
+}
