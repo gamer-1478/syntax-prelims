@@ -19,6 +19,9 @@ const MONGO_CLUSTER_URL = process.env.MONGO_CLUSTER_URL
 const MONGO_DATABASE_NAME = process.env.MONGO_DATABASE_NAME
 const db = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER_URL}/${MONGO_DATABASE_NAME}?retryWrites=true&w=majority`
 
+app.use('/', bloatRouter);
+app.use('/', indexRouter);
+
 mongoose.connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -28,7 +31,3 @@ mongoose.connect(db, {
         console.log(`Example app listening at http://localhost:${port}`)
     })
 }).catch(err => console.log(err))
-
-
-app.use('/', bloatRouter);
-app.use('/', indexRouter);
