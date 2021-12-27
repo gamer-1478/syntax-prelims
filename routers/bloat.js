@@ -9,7 +9,7 @@ const express = require('express'),
 bloatRouter.use(express.static('public'));
 
 //cors middleware
-const whitelist = ['localhost', 'blog.aayushgarg.net', 'blog-aayush.herokuapp.com']
+const whitelist = ['localhost', 'syntax-prelims.herokuapp.com']
 const corsOptions = {
     origin: (origin, callback) => {
         if (!origin || whitelist.indexOf(origin) !== -1) {
@@ -22,7 +22,7 @@ const corsOptions = {
 bloatRouter.use(cors(corsOptions))
 
 // Allowed hosts
-const allowedHosts = ['localhost', 'blog.aayushgarg.net', 'blog-aayush.herokuapp.com'];
+const allowedHosts = ['localhost', 'syntax-prelims.herokuapp.com'];
 const checkHosts = (req, res, next) => {
     if (allowedHosts.includes(req.hostname)) {
         return next();
