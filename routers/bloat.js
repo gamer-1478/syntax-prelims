@@ -6,12 +6,7 @@ const express = require('express'),
     cors = require('cors');
 
 //serve public folder
-const options = {
-    setHeaders: function (res, path, stat) {
-        res.set('x-timestamp', Date.now())
-    }
-}
-bloatRouter.use(express.static('public', options))
+bloatRouter.use(express.static('public'));
 
 //cors middleware
 const whitelist = ['localhost', 'blog.aayushgarg.net', 'blog-aayush.herokuapp.com']
