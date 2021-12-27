@@ -17,7 +17,7 @@ const MONGO_PASSWORD = process.env.MONGO_PASSWORD
 const MONGO_USER = process.env.MONGO_USER
 const MONGO_CLUSTER_URL = process.env.MONGO_CLUSTER_URL
 const MONGO_DATABASE_NAME = process.env.MONGO_DATABASE_NAME
-const db = `mongodb+srv://admin:${MONGO_PASSWORD}@cluster0.jwzbb.mongodb.net/data?retryWrites=true&w=majority`
+const db = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER_URL}/${MONGO_DATABASE_NAME}?retryWrites=true&w=majority`
 
 mongoose.connect(db, {
     useNewUrlParser: true,
