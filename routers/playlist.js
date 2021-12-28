@@ -120,4 +120,3 @@ playlistRouter.get('/:id', ensureAuthenticated, async (req, res) => {
 })
 
 module.exports = playlistRouter;
-
