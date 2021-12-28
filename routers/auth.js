@@ -10,7 +10,7 @@ const bcrypt = require("bcryptjs")
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
+router.get('/register', (req, res) => res.render('register'));
 
 
 
@@ -21,7 +21,7 @@ router.get("/register", (req,res)=>{
 
 router.post("/register", async(req, res)=>{
     let errors = [];
-    const {username, email, password, modelNumber, emergencyContact} = req.body
+    const {username, email, password} = req.body
     if(!username || !email || !password){
         errors.push({msg:"Please Fill in all the fields"})
     }
@@ -47,8 +47,6 @@ router.post("/register", async(req, res)=>{
                     "username": username,
                     "email": email,
                     "password": password,
-                    "modelNumber": modelNumber,
-                    "emergencyContact": emergencyContact
                 })
                 bcrypt.genSalt(10, (err, salt)=> bcrypt.hash(newUser.password, salt, (err, hash)=>{
                     if(err) throw err

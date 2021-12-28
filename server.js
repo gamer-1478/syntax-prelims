@@ -7,7 +7,8 @@ const express = require('express'),
     port = process.env.PORT || 3000,
     bloatRouter = require('./routers/bloat'),
     indexRouter = require('./routers/index'),
-    adminRouter = require("./routers/admin");
+    adminRouter = require("./routers/admin"),
+    authRouter = require("./routers/auth");
 //ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -22,6 +23,7 @@ const db = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_CLUSTER_URL}/$
 app.use('/', bloatRouter);
 app.use('/', indexRouter);
 app.use("/admin", adminRouter)
+app.use("/auth", authRouter)
 
 mongoose.connect(db, {
     useNewUrlParser: true,
