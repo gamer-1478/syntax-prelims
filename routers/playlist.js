@@ -4,6 +4,7 @@ const User = require("../models/userSchema")
 const bodyParser = require('body-parser');
 const { ensureAuthenticated } = require('../config/auth');
 const Playlist = require("../models/playlistSchema")
+const Song = require("../models/songSchema")
 
 playlistRouter.get("/new", ensureAuthenticated, (req, res)=>{
     res.render("playlist")
@@ -26,8 +27,41 @@ playlistRouter.post("/new", ensureAuthenticated, (req, res)=>{
 
 playlistRouter.get("/all", ensureAuthenticated, (req, res)=>{
     User.findOne(req.user, (err, doc)=>{
-        res.send(doc.playlist.name)
+        res.send(doc.playlists[0].name)
     })
 })
 
+playlistRouter.get("/:id/add/:songid", ensureAuthenticated, (req, res)=>{
+    // let playlistId = req.params.id
+    User.findOne(req.user, (err,doc)=>{
+        Song.findOne({id: req.params.songid}, (err, doc1)=>{
+            let index = doc.playlists.findIndex(x => x.name == req.params.id)
+            if(doc.playlists[index].songs.includes(req.params.songid)){
+                res.send("Song already exists in playlist")
+            }else{
+                doc.playlists[index].songs.push(req.params.songid)
+                doc.save()
+                .then(res.send(doc))    
+            }
+        })
+    })
+})
+
+playlistRouter.get("/:id/delete/:songid", ensureAuthenticated, (req, res)=>{
+    User.findOne(req.user, (err,doc)=>{
+        Song.findOne({id: req.params.songid}, (err, doc1)=>{
+            let index = doc.playlists.findIndex(x => x.name == req.params.id)
+            if(!doc.playlists[index].songs.includes(req.params.songid)){
+                res.send("Song not in playlist")
+            }else{
+                doc.playlists[index].songs = doc.playlists[index].songs.filter(x => x != req.params.songid)
+                doc.save()
+                .then(res.send(doc))    
+            }
+        })
+    })
+})
+
+
 module.exports = playlistRouter;
+
