@@ -7,7 +7,7 @@ const Playlist = require("../models/playlistSchema")
 const Song = require("../models/songSchema")
 
 playlistRouter.get("/new", ensureAuthenticated, (req, res) => {
-    res.render("playlist", { title: "New Playlist", description: "New Playlist", user:req.user })
+    res.render("playlist", { title: "New Playlist", description: "New Playlist", user: req.user })
 })
 
 playlistRouter.post("/new", ensureAuthenticated, (req, res) => {
@@ -64,8 +64,20 @@ playlistRouter.get("/:id/delete/:songid", ensureAuthenticated, (req, res) => {
     })
 })
 
+playlistRouter.get("/:id/allsongid", ensureAuthenticated, async (req, res) => {
+    User.findOne({ username: req.user.username }, async (err, doc) => {
+        if (doc) {
+            let index = doc.playlists.findIndex(x => x.id == req.params.id)
+            res.send(doc.playlists[index].songs.map(x => x))
+        }
+        else{
+            res.send("No such playlist")
+        }
+    })
+})
+
 playlistRouter.get('/:id', ensureAuthenticated, async (req, res) => {
-    User.findOne(req.user, async (err, doc) => {
+    User.findOne({ username: req.user.username }, async (err, doc) => {
         let index = doc.playlists.findIndex(x => x.id == req.params.id)
         if (doc.playlists[index].songs.length > 0) {
             await Promise.all(
