@@ -4,6 +4,8 @@ const express = require('express'),
     path = require('path'),
     fs = require('fs'),
     Song = require("../models/songSchema");
+const { ensureAuthenticated } = require('../config/auth');
+    User = require("../models/userSchema")
 
 indexRouter.get('/', (req, res) => {
     res.render('index', { title: "Home", description: "Home", user: req.user });
@@ -40,7 +42,7 @@ indexRouter.get('/song_stream/:id', (req, res) => {
     }
 })
 
-indexRouter.get('/play/:id', async (req, res) => {
+indexRouter.get('/play/:id',ensureAuthenticated, async (req, res) => {
     if (req.params.id.length > 0) {
         Song.findOne({ id: req.params.id }, function (err, doc) {
             Song.count().exec(function (err, count) {
@@ -54,6 +56,22 @@ indexRouter.get('/play/:id', async (req, res) => {
         })
     } else {
         res.redirect('/dashboard');
+    }
+})
+
+indexRouter.get("/like/:id", ensureAuthenticated, (req, res)=>{
+    if(req.params.id.length > 0){
+        User.findOne({username: req.user.username}, (err, doc1)=>{
+            if(err){
+                res.send(err)
+            }else{
+                Song.findOne({ id: req.params.id }, function (err, doc) {
+                    doc1.liked.push(doc.id)
+                    res.send(doc1.liked)
+                    doc1.save()
+                })
+            }
+        })
     }
 })
 
