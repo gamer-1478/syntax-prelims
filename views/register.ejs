@@ -1,19 +1,19 @@
 <body>
     <div class="login-container">
         <div class="form-div">
-            <h1>Login</h1><br><br>
-            <p style="margin-bottom: 20px;">Don't have an account? <a href="/register" style="color: red;">Register</a>
+            <h1>Register</h1><br><br>
+            <p style="margin-bottom: 20px;">Already have an account? <a href="/login" style="color: blue;">Login</a>
             </p>
 
-            <form class="login-form" action="/auth/register" method="POST">
+            <form class="login-form" action="/register" method="POST">
                 <label for="username" class="user-label">Username</label>
-                <input required="true" type="username" name="username" id="username" placeholder="Username">
+                <input required="true" type="username" class="username" name="username" id="username" placeholder="Username"><br>
 
                 <label for="email" class="email-label">Email Address</label>
                 <input type="text" id="email" name="email" class="email" placeholder="john@gmail.com"><br>
                 <label for="password" class="pw-label">Password </label>
                 <input type="password" id="password" placeholder="john1234" name="password" class="password"><br>
-                <button type="submit" class="register">Register</button>
+                <button class="btn" type="submit" class="register">Register</button>
             </form>
         </div>
         <img src="https://media.istockphoto.com/vectors/music_2-vector-id1199399101?k=20&m=1199399101&s=612x612&w=0&h=LY631hKDk4fSqJA8TnlS3b_IS8KynRatlDiKHuYQFUQ="
@@ -21,6 +21,15 @@
     </div>
 
 </body>
+<script>
+    var notyf = new Notyf();
+    <% if( typeof errors != "undefined"){ %> 
+        <% for(var i = 0; i < errors.length; i++){ %>
+            notyf.error('<%= errors[i].msg %>');
+            <% } %>
+    <%}%>
+</script>
+
 
 <style>
     .form-div {
@@ -59,6 +68,7 @@
     }
 
     .form-div .email,
+    .form-div .username,
     .form-div .password {
         margin-left: 30px;
         width: 15vw;
@@ -71,7 +81,9 @@
         font-size: 1vw;
         color: gray;
     }
-
+    .form-div .username {
+        margin-left: 60px !important;
+    }
     .form-div .password {
         margin-left: 70px;
     }
