@@ -8,7 +8,8 @@ const express = require('express'),
     bloatRouter = require('./routers/bloat'),
     indexRouter = require('./routers/index'),
     adminRouter = require("./routers/admin"),
-    authRouter = require("./routers/auth");
+    authRouter = require("./routers/auth"),
+    dashboardRouter = require("./routers/dashboard");
 //ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -41,6 +42,7 @@ app.use('/', bloatRouter);
 app.use('/', indexRouter);
 app.use("/admin", adminRouter)
 app.use("/auth", authRouter)
+app.use("/dashboard", dashboardRouter)
 
 mongoose.connect(db, {
     useNewUrlParser: true,
