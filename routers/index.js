@@ -9,7 +9,7 @@ indexRouter.get('/', (req, res) => {
     if (req.user != null) {
         loggedIn = true;
     }
-    res.render('index', { title: "Home", description: "Home", loggedIn: loggedIn });
+    res.render('index', { title: "Home", description: "Home", user:user });
 });
 
 indexRouter.get('/song_stream/:id', (req, res) => {

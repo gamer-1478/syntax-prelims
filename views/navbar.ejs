@@ -5,7 +5,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">About</a>
             </li>
-            <% if (loggedIn) { %>
+            <% if (!typeof user) { %>
             <li class="nav-item">
                 <a href="#" class="nav-link">User Dashboard</a>
             </li>

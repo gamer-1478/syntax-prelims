@@ -9,6 +9,7 @@ const express = require('express'),
     indexRouter = require('./routers/index'),
     adminRouter = require("./routers/admin"),
     authRouter = require("./routers/auth");
+    
 //ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
