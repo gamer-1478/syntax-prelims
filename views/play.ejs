@@ -69,7 +69,7 @@
     const whiteHeart = "far fa-heart";
     const blackHeart = "fas fa-heart";
     const element = document.getElementById('liked');
-    var currentlyLiked = <%= liked %>;
+    var currentlyLiked = <%= liked %> ;
     if (currentlyLiked == true) {
         element.className = blackHeart;
     } else {
@@ -81,16 +81,26 @@
         const like = element.className;
         if (like == whiteHeart) {
             element.className = blackHeart;
+            addLike();
         } else {
             element.className = whiteHeart;
+            removeLike();
         }
     }
 
     function addLike() {
-        notyf.success('Liked!');
+        //get fetch
+        fetch('/like/<%= song_doc.id %>', {
+            method: 'GET',
+        })
+        notyf.success("Song Liked!");
     }
 
     function removeLike() {
+        //get fetch remove like
+        fetch('/remove_like/<%= song_doc.id %>', {
+            method: 'GET',
+        })
         notyf.success('Removed From Likes!');
     }
 

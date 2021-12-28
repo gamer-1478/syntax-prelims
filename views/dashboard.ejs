@@ -1,4 +1,72 @@
-
 <body>
-    <h1>Dashboard</h1>
+    <div class="recently-played-container">
+        <h1 class='recently-head-text'>Recently Played</h1>
+        <div class="song-container">
+            <% if (songs.length >0 ) { %>
+            <% for (let i = 0; i < songs.length; i++) { %>
+            <div class="song_card" onclick="playSong('<%= songs[i].id %>')">
+                <div class="song-image">
+                    <img width="100" height="100" src="<%= songs[i].album_img %>" alt="">
+                </div>
+                <div class="song-info">
+                    <h2><%= songs[i].name %></h2>
+                    <h3><%= songs[i].artist %></h3>
+                </div>
+            </div>
+            <% } %>
+            <% } else { %>
+            <h2>No recently played songs</h2>
+            <% } %>
+        </div>
+    </div>
+    <div class="recently-played-container">
+        <h1 class='recently-head-text'>Playlists</h1>
+        <div class="song-container">
+            <% if (user.playlists.length >0 ) { %>
+            <% for (let i = 0; i < user.playlists.length; i++) { %>
+            <div class="song_card" onclick="playPlaylist('<%= user.playlists[i].id %>')">
+                <div class="song-image">
+                    <img width="100" height="100" src="<%= user.playlists[i].songs[1].album_img %>" alt="">
+                </div>
+                <div class="song-info">
+                    <h2><%= user.playlists[i].name %></h2>
+                </div>
+            </div>
+            <% } %>
+            <% } else { %>
+            <h2>No Playlists</h2>
+            <% } %>
+        </div>
+    </div>
 </body>
+
+<script>
+    playSong = (id) => {
+        window.location.href = `/play/${id}`
+    }
+</script>
+
+<style>
+    .recently-played-container .recently-head-text {
+        margin-left: 30px;
+    }
+
+    .song-container {
+        margin-left: 20px;
+        margin-top: 30px;
+        display: flex;
+        height: 250px;
+    }
+
+    .song_card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+        width: 170px;
+        height: 200px;
+        background-color: #eee;
+        border-radius: 20%;
+    }
+</style>
