@@ -14,8 +14,9 @@ const userSchema = new mongoose.Schema({
         default: dateStringWithTime
     },
     userId: reqString,
-    likedArray: { type:String, required:true },
-    
+    liked: {type:Array, required:true},
+    recentlyPlayed: {type:Array, required:true},
+    playlist: {type:Array, required:true},
 })
 
 userSchema.plugin(passportLocalMongoose)
