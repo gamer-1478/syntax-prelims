@@ -43,6 +43,25 @@ indexRouter.get('/song_stream/:id', (req, res) => {
     }
 })
 
+indexRouter.get('/song_details/:id', (req, res) => {
+    Song.findOne({ id: req.params.id }, (err, doc) => {
+        res.send(doc)
+    })
+})
+
+indexRouter.get('/search', (req, res) => {
+    Song.find().then((result)=>{
+        res.render('search', { title: "Search", description: "Search", user: req.user, songs: result })
+    })
+})
+
+indexRouter.post('/search', (req, res) => {
+    Song.find({ $or: [{ name: { '$regex': req.body.query, "$options": "i" } }] }).then((result) => {
+        res.render('search', { title: "Search", description: "Search", user: req.user, songs: result });
+
+    })
+})
+
 indexRouter.get('/play/:id', ensureAuthenticated, async (req, res) => {
     if (req.params.id.length > 0) {
         Song.findOne({ id: req.params.id }, function (err, doc) {
@@ -53,7 +72,7 @@ indexRouter.get('/play/:id', ensureAuthenticated, async (req, res) => {
                         liked = true;
                     }
                     User.findOne({ username: req.user.username }, function (err, doc1) {
-                        if (doc1.recentlyPlayed.includes(req.params.id)){
+                        if (doc1.recentlyPlayed.includes(req.params.id)) {
                             doc1.recentlyPlayed = doc1.recentlyPlayed.filter(i => i !== req.params.id);
                             doc1.recentlyPlayed.push(req.params.id);
                         } else {
@@ -111,11 +130,11 @@ indexRouter.get("/like/:id", ensureAuthenticated, async (req, res) => {
     }
 })
 
-indexRouter.get('/remove_like/:id', ensureAuthenticated, async(req, res) => {
+indexRouter.get('/remove_like/:id', ensureAuthenticated, async (req, res) => {
     if (req.params.id.length > 0) {
         try {
             User.findOne({ username: req.user.username }, (err, doc1) => {
-                if (err) {throw err};
+                if (err) { throw err };
                 Song.findOne({ id: req.params.id }, async function (err, doc) {
                     if (doc) {
                         if (doc1.liked.includes(doc.id)) {

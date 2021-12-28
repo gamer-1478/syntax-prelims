@@ -7,7 +7,7 @@ const Playlist = require("../models/playlistSchema")
 const Song = require("../models/songSchema")
 
 playlistRouter.get("/new", ensureAuthenticated, (req, res) => {
-    res.render("playlist")
+    res.render("playlist", { title: "New Playlist", description: "New Playlist", user:req.user })
 })
 
 playlistRouter.post("/new", ensureAuthenticated, (req, res) => {
@@ -22,9 +22,9 @@ playlistRouter.post("/new", ensureAuthenticated, (req, res) => {
             songs: []
         })
         doc.playlists.push(playlist)
-        doc.save();
+        doc.save().then(() => { res.redirect("/playlist/" + id) });
     })
-    res.sendStatus(200)
+
 })
 
 playlistRouter.get("/all", ensureAuthenticated, (req, res) => {
@@ -64,6 +64,43 @@ playlistRouter.get("/:id/delete/:songid", ensureAuthenticated, (req, res) => {
     })
 })
 
+playlistRouter.get('/:id', ensureAuthenticated, async (req, res) => {
+    User.findOne(req.user, async (err, doc) => {
+        let index = doc.playlists.findIndex(x => x.id == req.params.id)
+        if (doc.playlists[index].songs.length > 0) {
+            await Promise.all(
+                doc.playlists[index].songs.map(song_id => {
+                    return new Promise((resolve, reject) => {
+                        Song.findOne({ id: song_id }, function (err, doc) {
+                            if (err) {
+                                reject(err)
+                            }
+                            if (doc) {
+                                resolve(doc)
+                            }
+                        })
+                    })
+                })).then(async (songs) => {
+                    res.render("playlistView", {
+                        title: "playlistView",
+                        description: "playlistView",
+                        user: req.user,
+                        songs: songs,
+                        playlist: doc.playlists[index]
+                    })
+                })
+        }
+        else {
+            res.render("playlistView", {
+                title: "playlistView",
+                description: "playlistView",
+                user: req.user,
+                songs: [],
+                playlist: doc.playlists[index]
+            })
+        }
+    })
+})
 
 module.exports = playlistRouter;
 

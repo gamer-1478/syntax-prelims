@@ -1,0 +1,47 @@
+<div class="playlist-Container">
+    <h1>Playlist : <%= playlist.name %></h1>
+
+    <div class="playlis-song-container">
+        <% if (songs.length >0 ) { %>
+        <% for (let i = 0; i < songs.length; i++) { %>
+        <div class="playlis-song_card" onclick="playSong('<%= songs[i].id %>')">
+            <div class="playlis-song-image">
+                <img width="100" height="100" src="<%= songs[i].album_img %>" alt="">
+            </div>
+            <div class="playlis-song-info">
+                <h2><%= songs[i].name %></h2>
+                <h3><%= songs[i].artist %></h3>
+            </div>
+        </div>
+        <% } %>
+        <% } else { %>
+        <h2>No songs found</h2>
+        <% } %>
+    </div>
+</div>
+
+<style>
+
+    .playlis-song_card {
+        display: flex;
+    }
+
+    .playlis-song-container {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+    }
+
+    .playlist-Container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<script>
+    playSong = (id) => {
+        window.location.href = `/play/${id}`
+    }
+</script>

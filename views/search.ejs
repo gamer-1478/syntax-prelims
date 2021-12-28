@@ -1,0 +1,52 @@
+<div class="Search-Container">
+    <h1>Search Songs!</h1>
+    <div class="form-div">
+        <form action="/search" method="POST">
+            <label for="query">Search:</label>
+            <input type="text" id="query" name="query" placeholder="Search for a song...">
+            <button type="submit" class="btn">Search</button>
+        </form>
+    </div>
+
+    <div class="song-container_search">
+        <% if (songs.length >0 ) { %>
+        <% for (let i = 0; i < songs.length; i++) { %>
+        <div class="song_card_search" onclick="playSong('<%= songs[i].id %>')">
+            <div class="song-image">
+                <img width="100" height="100" src="<%= songs[i].album_img %>" alt="">
+            </div>
+            <div class="song-info">
+                <h2><%= songs[i].name %></h2>
+                <h3><%= songs[i].artist %></h3>
+            </div>
+        </div>
+        <% } %>
+        <% } else { %>
+        <h2>No songs found</h2>
+        <% } %>
+    </div>
+</div>
+
+<style>
+    .form-div{
+        margin-top: 50px;
+        font-size: 24px;
+    }
+    .song_card_search{
+        display: flex;
+    }
+    .song-container_search{
+        margin-top: 50px;
+    }
+    .Search-Container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+
+<script>
+    playSong = (id) => {
+        window.location.href = `/play/${id}`
+    }
+</script>

@@ -26,9 +26,25 @@
             <% for (let i = 0; i < user.playlists.length; i++) { %>
             <div class="song_card" onclick="playPlaylist('<%= user.playlists[i].id %>')">
                 <div class="song-image">
-                    <img width="100" height="100" src="<%= user.playlists[i].songs[1].album_img %>" alt="">
+                    <% if(user.playlists[i].songs.length > 0){ %>
+                    <img id='<%= user.playlists[i].name %>' width="100" height="100" src="" alt="">
+                    <script>
+                        window.addEventListener('DOMContentLoaded', (event) => {
+                            fetch('/song_details/' + '<%= user.playlists[i].songs[0] %>', {
+                                method: 'GET'
+                            }).then(res => res.json()).then(data => {
+                                document.getElementById('<%= user.playlists[i].name %>').src = data
+                                    .album_img;
+                                console.log(data.album_img)
+                            });
+                        });
+                    </script>
+                    <%} else {%>
+                    <img width="100" height="100"
+                        src="https://lh3.googleusercontent.com/proxy/rFHHFrEASgJK-egMGTCdErUUsrQuz2Y3wPIJtid2bZd2Ogn9hFm2qixiSKGZ8jxU36lyTjGQL22FWcGdjJ8rGQCKG1qBikY"">
+                        <% } %> 
                 </div>
-                <div class="song-info">
+                <div class=" song-info">
                     <h2><%= user.playlists[i].name %></h2>
                 </div>
             </div>
@@ -41,6 +57,9 @@
 </body>
 
 <script>
+    playPlaylist = (id) => {
+        window.location.href = '/playlist/' + id;
+    }
     playSong = (id) => {
         window.location.href = `/play/${id}`
     }
