@@ -1,0 +1,38 @@
+<body>
+    <div class="profile">
+        <p> <strong>Username: </strong><%= username %> </p>
+        <p> <strong>Email: </strong><%= email %> </p>
+        <button class="liked">Liked Songs</button>   
+        <img class="avatar" src="assets/avatar.jpg" alt="avatar">
+        <form action="/logout" method="GET"><button type="submit">Logout <i class="fas fa-sign-out-alt"></i></button></form>
+    </div>
+    
+</body>
+<style>
+    button{
+        border: none;
+        border-radius: 1.5vw;
+        background-color: #000;
+        height: 3vw;
+        width: 10vw;
+        color: #eee;
+        margin-top: 30px;
+        margin-left: 40%;
+    }
+    p{
+        margin-top: 4vw;
+        line-height: 30px;
+        border: none;
+        padding-left: 33%;
+        font-size: 2rem;
+    }
+    .avatar{
+        height: 300px;
+        width:300px;
+        border-radius: 50%;
+        position:absolute;
+        right: 8%;
+        top:15%;
+        z-index: 9999;
+    }
+</style>
