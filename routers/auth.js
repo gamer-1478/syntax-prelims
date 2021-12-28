@@ -2,20 +2,22 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const auth = require("../config/auth");
-const { forwardAuthenticated } = require('../config/auth');
-const User = require("../models/userSchema")
+const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
+const User = require("../models/userSchema") 
 const bcrypt = require("bcryptjs")
 const { v4: uuidv4 } = require('uuid');
 
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('login', { title: "Login", description: "Login" }));
+router.get('/login', forwardAuthenticated, (req, res) => {
+    res.render('login', { title: "Login", description: "Login" })
+});
 
 // Register Page
-router.get("/register", (req, res) => {
+router.get("/register", forwardAuthenticated, (req, res) => {
     res.render("register", { title: "Register", description: "Register" });
 })
 
-
+// Register
 router.post("/register", async (req, res) => {
     let errors = [];
     const { username, email, password } = req.body
@@ -54,7 +56,7 @@ router.post("/register", async (req, res) => {
 
                         newUser.save()
                             .then(user => {
-                                res.redirect("/dashboard")
+                                res.redirect("/login")
                             })
                             .catch(err => console.log(err));
                     }))
@@ -72,7 +74,7 @@ router.post('/login', (req, res, next) => {
 })
 
 // Logout
-router.get('/logout', (req, res) => {
+router.get('/logout', ensureAuthenticated, (req, res) => {
     req.logout();
     res.redirect('/login');
 });

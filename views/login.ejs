@@ -1,16 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
 <body>
-    <form action="/login" method="POST">
-        <input required="true" type="email" name="email" id="email" placeholder="Email">
-        <input required="true" type="password" name="password" id="password" placeholder="Password">
-        <button type="submit" class="register">Login</button>
-    </form>
+    <div class="login-container">
+        <div class="form-div">
+            <h1>Login</h1><br><br>
+            <p style="margin-bottom: 20px;">Don't have an account? <a href="/register" style="color: red;">Register</a>
+            </p>
+            <form class="login-form" action="/login" method="POST">
+                <label for="email" class="email-label">Email Address</label>
+                <input type="text" id="email" name="email" class="email" placeholder="john@gmail.com"><br>
+                <label for="password" class="pw-label">Password </label>
+                <input type="password" id="password" placeholder="john1234" name="password" class="password"><br>
+                <input type="submit" class="btn" value="Sign In" class="index-submit" id="index-submit">
+            </form>
+        </div>
+        <img src="https://media.istockphoto.com/vectors/music_2-vector-id1199399101?k=20&m=1199399101&s=612x612&w=0&h=LY631hKDk4fSqJA8TnlS3b_IS8KynRatlDiKHuYQFUQ="
+            class="img" alt="">
+    </div>
 </body>
-</html>
+<style>
+    .form-div {
+        display: flex;
+        flex-direction: column;
+        width: 60vh;
+        margin-top: 10vh;
+        margin-bottom: auto;
+        margin-right: 50px;
+    }
+
+    .form-div label {
+        margin-right: 20px;
+    }
+
+    .img {
+        justify-content: end;
+        height: 30vw;
+        width: 43vw;
+    }
+
+    .form-div h1 {
+        font-size: 3.5vw;
+        font-weight: 500;
+        margin-bottom: 30px;
+    }
+
+    .form-div .btn {
+        border: none;
+        border-radius: 1.5vw;
+        background-color: #000;
+        height: 2vw;
+        width: 8vw;
+        color: #eee;
+        margin-top: 30px;
+    }
+
+    .form-div .email,
+    .form-div .password {
+        margin-left: 30px;
+        width: 15vw;
+        margin-top: 1vw;
+        line-height: 30px;
+        border: none;
+        border-radius: 1.5vw;
+        background: #eee;
+        padding-left: 1.5vw;
+        font-size: 1vw;
+        color: gray;
+    }
+    .form-div .password{
+        margin-left: 70px;
+    }
+    .login-container {
+        justify-content: center;
+        display: flex;
+        height: calc(100vh - 100px);
+    }
+
+    .login-form {
+        line-height: 50px;
+    }
+</style>

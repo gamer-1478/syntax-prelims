@@ -3,18 +3,18 @@
         <a href="#" class="nav-branding">Calliope</a>
         <ul class="nav-menu">
             <li class="nav-item">
-                <a href="#" class="nav-link">About</a>
+                <a href="/#about" class="nav-link">About</a>
             </li>
-            <% if (!typeof user) { %>
+            <% if (typeof user != 'undefined') { %>
             <li class="nav-item">
-                <a href="#" class="nav-link">User Dashboard</a>
+                <a href="/dashboard" class="nav-link">User Dashboard</a>
             </li>
             <% } else { %> 
             <li class="nav-item">
-                <a href="#" class="nav-link">LogIn</a>
+                <a href="/login" class="nav-link">LogIn</a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">SignUp</a>
+                <a href="/register" class="nav-link">SignUp</a>
             </li>
             <% } %>
         </ul>

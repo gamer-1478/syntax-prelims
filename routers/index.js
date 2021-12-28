@@ -5,11 +5,7 @@ const express = require('express'),
     fs = require('fs');
 
 indexRouter.get('/', (req, res) => {
-    var loggedIn = false;
-    if (req.user != null) {
-        loggedIn = true;
-    }
-    res.render('index', { title: "Home", description: "Home", user:user });
+    res.render('index', { title: "Home", description: "Home", user:req.user });
 });
 
 indexRouter.get('/song_stream/:id', (req, res) => {
