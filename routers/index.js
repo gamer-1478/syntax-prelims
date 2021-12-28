@@ -43,7 +43,13 @@ indexRouter.get('/song_stream/:id', (req, res) => {
 indexRouter.get('/play/:id', async (req, res) => {
     if (req.params.id.length > 0) {
         Song.findOne({ id: req.params.id }, function (err, doc) {
-            res.render('play', { title: "Play", description: "Play", user: req.user, id: req.params.id, song_doc: doc });
+            Song.count().exec(function (err, count) {
+                var random = Math.floor(Math.random() * count)
+                Song.findOne().skip(random).exec(
+                    function (err, result) {
+                        res.render('play', { title: "Play", description: "Play", user: req.user, id: req.params.id, song_doc: doc, up_next_doc: result, liked: true });
+                    })
+            })
             if (err) res.send(err)
         })
     } else {

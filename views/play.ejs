@@ -1,12 +1,106 @@
-<body>
-    <img src="<%= song_doc["album_img"] %>" width="400" height="400">
-    <h1>
-        <%= song_doc.name %>
-    </h1>
-    <p><%= song_doc.artist %></p>
-    <audio controls autoplay>
-        <source src="/song_stream/<%= id  %> " type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/css/green-audio-player.min.css">
+<script src="https://cdn.jsdelivr.net/gh/greghub/green-audio-player/dist/js/green-audio-player.min.js"></script>
 
+<body>
+    <div class="song-container-oops">
+        <div class="player-container">
+            <img src="<%= song_doc["album_img"] %>" width="300" height="300">
+            <h1>
+                <%= song_doc.name %>
+            </h1>
+            <p><%= song_doc.artist %></p>
+            <i id="liked" class="far fa-heart" onclick="toggle()"></i>
+
+            <div class="gap-example">
+                <audio id="audio" controls autoplay>
+                    <source src="/song_stream/<%= id  %> " type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+
+        </div>
+        <div class="up-next">
+            <h1>Up Next</h1>
+            <div class="up-next-container" onclick="playnext()">
+                <div class="up-next-info">
+                    <img src="<%= up_next_doc.album_img %>" width="70" height="70">
+                    <div>
+                        <h2><%= up_next_doc.name %></h2>
+                        <p><%= up_next_doc.artist %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
+<style>
+    .up-next-info {
+        display: flex;
+        margin-top: 20px;
+    }
+
+    .up-next {
+        margin-left: 50px;
+        margin-top: 8vh;
+    }
+
+    .song-container-oops {
+        margin-left: 40vw;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .gap-example {
+        margin-top: 70px;
+    }
+
+    .player-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        height: calc(100vh - 100px);
+    }
+</style>
+<script>
+    var notyf = new Notyf();
+
+    const whiteHeart = "far fa-heart";
+    const blackHeart = "fas fa-heart";
+    const element = document.getElementById('liked');
+    var currentlyLiked = <%= liked %>;
+    if (currentlyLiked == true) {
+        element.className = blackHeart;
+    } else {
+        element.className = whiteHeart;
+    }
+
+    function toggle() {
+        console.log(element.className);
+        const like = element.className;
+        if (like == whiteHeart) {
+            element.className = blackHeart;
+        } else {
+            element.className = whiteHeart;
+        }
+    }
+
+    function addLike() {
+        notyf.success('Liked!');
+    }
+
+    function removeLike() {
+        notyf.success('Removed From Likes!');
+    }
+
+    var aud = document.getElementById("audio");
+    aud.addEventListener("ended", function () {
+        aud.currentTime = 0;
+        playnext();
+    });
+
+    function playnext() {
+        window.location.href = '/play/<%= up_next_doc.id %>';
+    }
+</script>
