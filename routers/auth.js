@@ -34,13 +34,13 @@ router.post("/register", async (req, res) => {
     }
 
     if (errors.length > 0) {
-        res.render("register", { errors, username, email, password })
+        res.render("register", { errors, title: "Register", description: "Register" })
     } else {
         User.findOne({ email: email })
             .then(user => {
                 if (user) {
                     errors.push({ msg: "User already exists, try logging in instead." })
-                    res.render("register", { error })
+                    res.render("register", { errors, title: "Register", description: "Register" })
                 } else {
                     let userId = uuidv4();
                     const newUser = new User({
