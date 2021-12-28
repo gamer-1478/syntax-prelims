@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const auth = require("../config/auth");
-const { forwardAuthenticated } = require('../config/auth');
+const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 const User = require("../models/userSchema") 
 const bcrypt = require("bcryptjs")
 const { v4: uuidv4 } = require('uuid');
@@ -11,7 +11,7 @@ const { v4: uuidv4 } = require('uuid');
 router.get('/login', forwardAuthenticated, (req, res) => res.render('login'));
 
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', forwardAuthenticated, (req, res) => res.render('register'));
 
 
 
