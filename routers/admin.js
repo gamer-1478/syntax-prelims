@@ -4,11 +4,11 @@ const Song = require("../models/songSchema")
 adminRouter.get("/test", (req, res, next)=>{
 
     // const newSong = new Song({
-    //     name:"Without You",
-    //     artist: "The Kid LAROI",
-    //     id: "without_you",
-    //     time: 161,
-    //     genre: "Pop"
+    //     name:"Leave The Door Open",
+    //     artist: "Bruno Mars, Anderson Paak",
+    //     id: "leave_the_door_open",
+    //     time: 263,
+    //     genre: "R&B"
     // })
 
     // newSong.save()
