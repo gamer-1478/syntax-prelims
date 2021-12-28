@@ -9,12 +9,13 @@ const express = require('express'),
 bloatRouter.use(express.static('public'));
 
 //cors middleware
-const whitelist = ['localhost', 'syntax-prelims.herokuapp.com']
+const whitelist = ['http://localhost:3000', 'syntax-prelims.herokuapp.com']
 const corsOptions = {
     origin: (origin, callback) => {
         if (!origin || whitelist.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
+            console.log(origin)
             callback(new Error("Not allowed by CORS"))
         }
     }
