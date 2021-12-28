@@ -12,7 +12,8 @@ const songSchema = new mongoose.Schema({
     genre: {
         type:String,
         required: false
-    }
+    },
+    album_img: reqString
 })
 
 module.exports = mongoose.model("Song", songSchema)

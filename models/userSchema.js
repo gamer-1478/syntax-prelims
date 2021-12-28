@@ -13,7 +13,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         default: dateStringWithTime
     },
-    userId: reqString
+    userId: reqString,
+    likedArray: { type:String, required:true },
+    
 })
 
 userSchema.plugin(passportLocalMongoose)
