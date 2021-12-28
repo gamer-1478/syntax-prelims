@@ -10,7 +10,8 @@ const express = require('express'),
     adminRouter = require("./routers/admin"),
     authRouter = require("./routers/auth"),
     session = require("cookie-session"),
-    passport = require('passport');
+    passport = require('passport'),
+    dashboardRouter = require("./routers/dashboard");
 //ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
@@ -41,6 +42,7 @@ app.use('/', bloatRouter);
 app.use('/', indexRouter);
 app.use("/admin", adminRouter)
 app.use("/", authRouter)
+app.use("/dashboard", dashboardRouter)
 
 mongoose.connect(db, {
     useNewUrlParser: true,
