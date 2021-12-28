@@ -5,15 +5,18 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">About</a>
             </li>
+            <% if (loggedIn) { %>
             <li class="nav-item">
                 <a href="#" class="nav-link">User Dashboard</a>
             </li>
+            <% } else { %> 
             <li class="nav-item">
                 <a href="#" class="nav-link">LogIn</a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">SignUp</a>
             </li>
+            <% } %>
         </ul>
         <div class="hamburger">
             <span class="bar"></span>
@@ -22,9 +25,10 @@
         </div>
     </nav>
 </header>
-
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;700;900&display=swap%27');
     * {
+        font-family: 'Montserrat';
         padding: 0;
         margin: 0;
         box-sizing: border-box;
@@ -45,7 +49,7 @@
     }
 
     .navbar {
-        min-height: 70px;
+        min-height: 100px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -62,6 +66,9 @@
         justify-content: space-between;
         align-items: center;
         gap: 60px;
+        margin-right: 50px;
+        font-size: 18px;
+        font-weight: 500;
     }
 
     .nav-link {
@@ -107,13 +114,12 @@
         .nav-menu {
             position: fixed;
             left: -100%;
-            top: 70px;
+            top: 100px;
             gap: 0;
-            height: 1vh;
             flex-direction: column;
             background-color: #fff;
             width: 100%;
-            height: calc(100vh - 70px);
+            height: calc(100vh - 100px);
             text-align: center;
             transition: 0.3s;
         }

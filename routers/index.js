@@ -5,7 +5,11 @@ const express = require('express'),
     fs = require('fs');
 
 indexRouter.get('/', (req, res) => {
-    res.render('index', { title: "Home", description: "Home" })
+    var loggedIn = false;
+    if (req.user != null) {
+        loggedIn = true;
+    }
+    res.render('index', { title: "Home", description: "Home", loggedIn: loggedIn });
 });
 
 indexRouter.get('/song_stream/:id', (req, res) => {
