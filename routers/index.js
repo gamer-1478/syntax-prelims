@@ -2,10 +2,11 @@ const indexRouter = require('express').Router();
 const express = require('express'),
     bodyParser = require('body-parser'),
     path = require('path'),
-    fs = require('fs');
+    fs = require('fs'),
+    Song = require("../models/songSchema");
 
 indexRouter.get('/', (req, res) => {
-    res.render('index', { title: "Home", description: "Home", user:req.user });
+    res.render('index', { title: "Home", description: "Home", user: req.user });
 });
 
 indexRouter.get('/song_stream/:id', (req, res) => {
@@ -36,6 +37,17 @@ indexRouter.get('/song_stream/:id', (req, res) => {
         };
         res.writeHead(200, head);
         fs.createReadStream(filePath).pipe(res);
+    }
+})
+
+indexRouter.get('/play/:id', async (req, res) => {
+    if (req.params.id.length > 0) {
+        Song.findOne({ id: req.params.id }, function (err, doc) {
+            res.render('play', { title: "Play", description: "Play", user: req.user, id: req.params.id, song_doc: doc });
+            if (err) res.send(err)
+        })
+    } else {
+        res.redirect('/dashboard');
     }
 })
 

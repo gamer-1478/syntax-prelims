@@ -1,0 +1,12 @@
+<body>
+    <img src="<%= song_doc["album_img"] %>" width="400" height="400">
+    <h1>
+        <%= song_doc.name %>
+    </h1>
+    <p><%= song_doc.artist %></p>
+    <audio controls autoplay>
+        <source src="/song_stream/<%= id  %> " type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+</body>
