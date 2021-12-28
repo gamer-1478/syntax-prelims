@@ -41,6 +41,18 @@ indexRouter.get('/song_stream/:id', (req, res) => {
         res.writeHead(200, head);
         fs.createReadStream(filePath).pipe(res);
     }
+    User.findOne({ username: req.user.username }, function (err, doc1) {
+        if (doc1.recentlyPlayed.includes(req.params.id)) {
+            doc1.recentlyPlayed = doc1.recentlyPlayed.filter(i => i !== req.params.id);
+            doc1.recentlyPlayed.push(req.params.id);
+        } else {
+            doc1.recentlyPlayed.push(req.params.id);
+        }
+        if (doc1.recentlyPlayed.length > 6) {
+            doc1.recentlyPlayed = doc1.recentlyPlayed.splice(doc1.recentlyPlayed.length - 6, doc1.recentlyPlayed.length)
+        }
+        doc1.save();
+    });
 })
 
 indexRouter.get('/song_details/:id', (req, res) => {
@@ -50,7 +62,7 @@ indexRouter.get('/song_details/:id', (req, res) => {
 })
 
 indexRouter.get('/search', (req, res) => {
-    Song.find().then((result)=>{
+    Song.find().then((result) => {
         res.render('search', { title: "Search", description: "Search", user: req.user, songs: result })
     })
 })
@@ -71,18 +83,6 @@ indexRouter.get('/play/:id', ensureAuthenticated, async (req, res) => {
                     if (req.user.liked.includes(req.params.id)) {
                         liked = true;
                     }
-                    User.findOne({ username: req.user.username }, function (err, doc1) {
-                        if (doc1.recentlyPlayed.includes(req.params.id)) {
-                            doc1.recentlyPlayed = doc1.recentlyPlayed.filter(i => i !== req.params.id);
-                            doc1.recentlyPlayed.push(req.params.id);
-                        } else {
-                            doc1.recentlyPlayed.push(req.params.id);
-                        }
-                        if (doc1.recentlyPlayed.length > 10) {
-                            doc1.recentlyPlayed = doc1.recentlyPlayed.splice(doc1.recentlyPlayed.length - 10, doc1.recentlyPlayed.length)
-                        }
-                        doc1.save();
-                    });
                     var random = Math.floor(Math.random() * count)
                     Song.findOne().skip(random).exec(
                         function (err, result) {
@@ -97,6 +97,44 @@ indexRouter.get('/play/:id', ensureAuthenticated, async (req, res) => {
     } else {
         res.redirect('/dashboard');
     }
+});
+
+indexRouter.get('/likedSongs', ensureAuthenticated, async (req, res) => {
+    User.findOne({ username: req.user.username }, async (err, doc) => {
+        if (doc.liked.length > 0) {
+
+            await Promise.all(
+                doc.liked.map(song_id => {
+                    return new Promise((resolve, reject) => {
+                        Song.findOne({ id: song_id }, function (err, doc) {
+                            if (err) {
+                                reject(err)
+                            }
+                            if (doc) {
+                                resolve(doc)
+                            }
+                        })
+                    })
+                })).then(async (songs) => {
+                    res.render("LikedSongs", {
+                        title: "LikedSongs",
+                        description: "LikedSongs",
+                        user: req.user,
+                        songs: songs,
+                        playlist: doc.liked
+                    })
+                })
+        }
+        else {
+            res.render("LikedSongs", {
+                title: "LikedSongs",
+                description: "LikedSongs",
+                user: req.user,
+                songs: [],
+                playlist: doc.liked
+            })
+        }
+    })
 });
 
 indexRouter.get("/like/:id", ensureAuthenticated, async (req, res) => {

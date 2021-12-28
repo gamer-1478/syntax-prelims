@@ -1,38 +1,42 @@
 <body>
     <div class="profile">
+        <img class="avatar" src="assets/avatar.jpg" alt="avatar">
         <p> <strong>Username: </strong><%= username %> </p>
         <p> <strong>Email: </strong><%= email %> </p>
-        <button class="liked">Liked Songs</button>   
-        <img class="avatar" src="assets/avatar.jpg" alt="avatar">
-        <form action="/logout" method="GET"><button type="submit">Logout <i class="fas fa-sign-out-alt"></i></button></form>
+        <button onClick="new function(){window.location.href = '/liked_songs'}" class="liked">Liked Songs</button>
+        <form action="/logout" method="GET"><button type="submit">Logout <i class="fas fa-sign-out-alt"></i></button>
+        </form>
     </div>
-    
+
 </body>
 <style>
-    button{
+    .profile button {
+        margin-top: 20px;
         border: none;
         border-radius: 1.5vw;
         background-color: #000;
         height: 3vw;
         width: 10vw;
         color: #eee;
-        margin-top: 30px;
-        margin-left: 40%;
     }
-    p{
-        margin-top: 4vw;
+
+    .profile p {
+        margin-top: 20px;
         line-height: 30px;
         border: none;
-        padding-left: 33%;
         font-size: 2rem;
     }
-    .avatar{
+
+    .avatar {
         height: 300px;
-        width:300px;
+        width: 300px;
         border-radius: 50%;
-        position:absolute;
-        right: 8%;
-        top:15%;
-        z-index: 9999;
+    }
+
+    .profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 </style>

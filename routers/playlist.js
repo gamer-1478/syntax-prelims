@@ -4,7 +4,8 @@ const User = require("../models/userSchema")
 const bodyParser = require('body-parser');
 const { ensureAuthenticated } = require('../config/auth');
 const Playlist = require("../models/playlistSchema")
-const Song = require("../models/songSchema")
+const Song = require("../models/songSchema");
+const indexRouter = require('.');
 
 playlistRouter.get("/new", ensureAuthenticated, (req, res) => {
     res.render("playlist", { title: "New Playlist", description: "New Playlist", user: req.user })
@@ -67,10 +68,14 @@ playlistRouter.get("/:id/delete/:songid", ensureAuthenticated, (req, res) => {
 playlistRouter.get("/:id/allsongid", ensureAuthenticated, async (req, res) => {
     User.findOne({ username: req.user.username }, async (err, doc) => {
         if (doc) {
-            let index = doc.playlists.findIndex(x => x.id == req.params.id)
-            res.send(doc.playlists[index].songs.map(x => x))
+            if (req.params.id != 'liked') {
+                let index = doc.playlists.findIndex(x => x.id == req.params.id)
+                res.send(doc.playlists[index].songs.map(x => x))
+            } else {
+                res.send(doc.liked.map(x => x))
+            }
         }
-        else{
+        else {
             res.send("No such playlist")
         }
     })
