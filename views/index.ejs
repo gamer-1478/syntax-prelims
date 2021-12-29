@@ -1,1 +1,390 @@
-<h1>Hello World</h1>
+<style>
+    @media only screen and (max-width:600px) {
+        .nav-div img {
+            height: 10vw;
+            width: 10vw;
+        }
+
+        .landing-div {
+            height: 50vw;
+            margin-top: 12.5vw;
+        }
+
+        .landing-div h1 {
+            font-size: 12.5vw;
+            margin-top: 15vw;
+        }
+
+        .landing-div input {
+            width: 75%;
+            color: #eee;
+            margin-top: 35vw;
+            font-size: 3.5vw;
+        }
+
+        .nav-div ul {
+            display: none;
+        }
+
+        .landing-div h4 {
+            font-size: 3vw;
+        }
+
+        .about {
+            margin-top: 12.5vw;
+        }
+
+        .about h1 {
+            font-size: 7.5vw;
+        }
+
+        .about .p {
+            font-size: 1.6vw;
+            transform: scale(1.75);
+            margin-top: 25vw;
+            margin-left: 42.5vw;
+        }
+
+        .benefit-user {
+            margin-top: 110vw;
+        }
+
+        .about img {
+            transform: scale(1);
+            margin-top: 30vw;
+        }
+
+        .package-div p {
+            font-size: 3.5vw;
+        }
+
+        .package-div h1 {
+            font-size: 5vw;
+        }
+
+        .warant-div p {
+            font-size: 3.5vw;
+        }
+
+        .warant-div h1 {
+            font-size: 5vw;
+        }
+
+        .quality-div p {
+            font-size: 3.5vw;
+        }
+
+        .quality-div h1 {
+            font-size: 5vw;
+        }
+
+        .benefit-user .h2 {
+            font-size: 7.5vw;
+        }
+
+        .benefit-div {
+            margin-top: 30vw;
+        }
+
+        .line {
+            width: 80%;
+        }
+
+        .rate-icon,
+        .rate-icon-1 {
+            margin-top: 65vw;
+            height: 10vw;
+            width: 50vw;
+        }
+
+        .rate-icon p,
+        .rate-icon-1 p {
+            margin-top: 5vw;
+            font-size: 3.5vw;
+        }
+
+        .rate-icon-1 {
+            margin-left: 45vw;
+        }
+
+        .social-ul {
+            font-size: 2.5vw;
+            margin-left: 75vw;
+        }
+
+        .social-ul li {
+            margin-left: 5vw;
+        }
+
+        .ham {
+            display: block;
+            position: absolute;
+            font-size: 5vw;
+            margin-left: 85vw;
+            margin-top: 2.5vw;
+        }
+
+        .footer-div h3 {
+            font-size: 2.5vw;
+        }
+    }
+</style>
+
+<body>
+    <div class="nav-div">
+        <img src="https://media.discordapp.net/attachments/741244174736556076/887655770739601418/unknown.png"
+            alt="nav-logo" onclick="new function(){window.location.href = window.location.origin+'/dashboard';}">
+        <ul>
+            <li><a style="text-decoration: none; color:inherit;" href="#about">About</a></li>
+            <li class="n1"><a style="text-decoration: none; color:inherit;" href="/profile">User </a> </li>
+            <li class="n2"><a style="text-decoration: none; color:inherit;" href="/login">Login </a> </li>
+            <li class='n3'><a style="text-decoration: none; color:inherit;" href="/register">Register </a> </li>
+        </ul>
+        <span class="material-icons-outlined ham" onclick="openNav()">
+            menu
+        </span>
+        <span class="material-icons-outlined " onclick="closeNav()">
+            cross
+        </span>
+    </div>
+    <div class="landing-div">
+        <h1>Malley</h1>
+        <h4>Get in that Shopping zone</h4>
+        <form class="search-form-index" onclick="preventDefault();" action="/consumer" method="post">
+            <input type="text" id="query" name="query" class="query" placeholder="Search">
+        </form>
+
+    </div>
+    <div class="engagement-panel">
+
+    </div>
+    <div class="about" id='about'>
+        <h1>
+            Explore & Enjoy the <br>
+            easiness of the moment
+        </h1>
+        <p class="p">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab tempora <br>
+            quae repellendus, optio nulla odit ullam laudantium magnam ducimus <br>
+            molestiae labore.
+        </p>
+        <div class="rate-list">
+            <div class="rate-icon">
+                <div class="rate-icon-s">
+                    <span class="material-icons-outlined">
+                        shopping_bag
+                    </span>
+                </div>
+                <div class="counter" data-count="40000">1000</div>
+                <p> Orders placed</p>
+            </div>
+        </div>
+        <div class="rate-list-1">
+            <div class="rate-icon-1">
+                <div class="rate-icon-s-1">
+                    <span class="material-icons-round">
+                        storefront
+                    </span>
+                </div>
+                <div class="counter-1" data-count="2000">500</div>
+                <p> Retailers Joined</p>
+            </div>
+        </div>
+        <img src="https://media.discordapp.net/attachments/741244174736556076/887682666693029919/unknown.png?width=488&height=513"
+            alt="">
+    </div>
+    <div class="benefit-user">
+        <div class="line"></div>
+        <h2 class="h2">
+            Benefits you get when <br>
+            using our services
+        </h2>
+        <div class="benefit-div">
+            <div class="package-div">
+                <span class="material-icons-outlined">
+                    local_shipping
+                </span>
+                <h2>Free Shipping</h2>
+                <p>Compact Data</p>
+            </div>
+            <div class="warant-div">
+                <span class="material-icons-outlined">
+                    schedule
+                </span>
+                <h2>Warranty</h2>
+                <p>Compact Data</p>
+            </div>
+            <div class="quality-div">
+                <span class="material-icons-round">
+                    settings
+                </span>
+                <h2>Best Quality</h2>
+                <p>Compact Data</p>
+            </div>
+        </div>
+        <div class="footer-div">
+            <h3>Malley</h3>
+            <ul class='social-ul'>
+                <li>
+                    <span onclick="" class="material-icons-outlined">
+                        mail
+                    </span>
+                </li>
+                <li>
+                    <i onclick="" class="fab fa-instagram"></i>
+                </li>
+                <li><i onclick="" class="fab fa-facebook"></i></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+<script>
+    $('.counter').each(function () {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+
+        $({
+            countNum: $this.text()
+        }).animate({
+            countNum: countTo
+        }, {
+            duration: 2000,
+            easing: 'linear',
+            step: function () {
+                $this.text(Math.floor(this.countNum));
+            },
+            complete: function () {
+                $this.text(this.countNum);
+                //alert('finished');
+            }
+        });
+
+    });
+    $('.counter').each(function () {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+
+        $({
+            countNum: $this.text()
+        }).animate({
+                countNum: countTo
+            },
+
+            {
+
+                duration: 2000,
+                easing: 'linear',
+                step: function () {
+                    $this.text(Math.floor(this.countNum));
+                },
+                complete: function () {
+                    $this.text(this.countNum);
+                    //alert('finished');
+                }
+
+            });
+
+
+
+    }); +
+    $('.counter-1').each(function () {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+
+        $({
+            countNum: $this.text()
+        }).animate({
+                countNum: countTo
+            },
+
+            {
+
+                duration: 2000,
+                easing: 'linear',
+                step: function () {
+                    $this.text(Math.floor(this.countNum));
+                },
+                complete: function () {
+                    $this.text(this.countNum);
+                    //alert('finished');
+                }
+
+            });
+
+
+
+    });
+    $('.counter-1').each(function () {
+        var $this = $(this),
+            countTo = $this.attr('data-count');
+
+        $({
+            countNum: $this.text()
+        }).animate({
+                countNum: countTo
+            },
+
+            {
+
+                duration: 2000,
+                easing: 'linear',
+                step: function () {
+                    $this.text(Math.floor(this.countNum));
+                },
+                complete: function () {
+                    $this.text(this.countNum);
+                    //alert('finished');
+                }
+
+            });
+
+
+
+    });
+    var swiper = new Swiper(".mySwiper", {
+        slidesPerView: 2,
+        centeredSlides: true,
+        pagination: {
+            el: ".swiper-pagination",
+            dynamicBullets: true,
+        },
+    });
+
+
+    // const imgList =
+    ['https://t3.ftcdn.net/jpg/01/97/11/64/360_F_197116416_hpfTtXSoJMvMqU99n6hGP4xX0ejYa4M7.jpg',
+        'https://t3.ftcdn.net/jpg/02/22/85/16/360_F_222851624_jfoMGbJxwRi5AWGdPgXKSABMnzCQo9RN.jpg',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-UKKA1hd7Yr6H6DKQRksZTYJIXRfxAsYH9A&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvl-eupMkPlVfcJl7KVECsZYb505sS5ZZDsw&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMpqAEMcCPN_1W3K3pupqCEKXeLUwFI3QyiQ&usqp=CAU',
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9Joj2JFcxkzPz4S7ZEyg9DXilXkw6R0wTakbI4M4BCIt3uH_eHKfYFsW8RcFQBFJBj2g&usqp=CAU'
+    ];
+
+    // for (var i = 0; i<imgList.length;i++){ // const div=document.createElement('div'); //
+    div.style.background = `url(${imgList[i]})`; // div.classList.add(`user-${i+1}`); //
+    document.querySelector('.user-div').appendChild(div); // } const navMob=document.createElement('div');
+    navMob.innerHTML = ` <br>
+        <br>
+        <br>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+        `;
+    navMob.classList.add('overlay');
+    navMob.setAttribute('id', 'myNav')
+    document.querySelector('body').append(navMob);
+
+    function openNav() {
+        document.getElementById("myNav").style.width = "100%";
+    }
+
+    /* Close when someone clicks on the "x" symbol inside the overlay */
+    function closeNav() {
+        document.getElementById("myNav").style.width = "0%";
+    }
+</script>
