@@ -1,3 +1,372 @@
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
 <body>
-    
+
+    <div class="landing-div">
+        <h1>Calliope</h1>
+        <h4>With the right music you either forget everything or remember everything!</h4>
+    </div>
+    <div class="about" id="about">
+        <h1>
+            Explore &amp; Enjoy the <br>
+            easiness of the moment
+        </h1>
+        <p class="p">
+            Our vision was to make a music app different from the other competitors in the market, <br>
+            we wanted to first of all fulfill all the basics, then we went on to add styling <br>
+            and better authentication. Finally, we implemented a great playlist management system. <br>
+        </p>
+        <div class="rate-list">
+            <div class="rate-icon">
+                <div class="rate-icon-s">
+                    <span class="material-icons-outlined">
+                        headphones
+                    </span>
+                </div>
+                <div class="counter" data-count="40000">40000</div>
+                <p>Songs Streamed!</p>
+            </div>
+        </div>
+        <div class="rate-list-1">
+            <div class="rate-icon-1">
+                <div class="rate-icon-s-1">
+                    <span class="material-icons-round">
+                        co_present
+                    </span>
+                </div>
+                <div class="counter-1" data-count="2000">2000</div>
+                <p>Artists And Users Joined</p>
+            </div>
+        </div>
+        <img src="https://cdn.discordapp.com/attachments/919851428758044702/925592496174665738/the-girl-listens-to-music-on-headphones-music-therapy-profile-of-a-vector-id1181031334.png?"
+            style="width:488px;height:488px;" alt="">
+    </div>
+    <div class="benefit-user">
+        <div class="line"></div>
+        <h2 class="h2">
+            Benefits you get when <br>
+            using our services
+        </h2>
+        <div class="benefit-div">
+            <div class="package-div">
+                <span class="material-icons-outlined">
+                    favorite
+                </span>
+                <h2>Liking songs!</h2>
+            </div>
+            <div class="warant-div">
+                <span class="material-icons-outlined">
+                    all_inclusive
+                </span>
+                <h2>Unlimited Playlists!</h2>
+            </div>
+            <div class="quality-div">
+                <span class="material-icons-round">
+                    settings
+                </span>
+                <h2>Best Quality</h2>
+            </div>
+        </div>
+        <div class="footer-div">
+            <h3>Calliope</h3>
+        </div>
+    </div>
 </body>
+<style>
+    .landing-div {
+        display: flex;
+        width: 95%;
+        background: #111;
+        color: #eee;
+        height: 27.5vw;
+        border-radius: 2.5vw;
+        margin-top: 5.5vw;
+        margin-left: 2.5%;
+    }
+
+    .landing-div h1 {
+        position: absolute;
+        font-size: 5vw;
+        font-weight: 800;
+        margin-left: 5vw;
+        margin-top: 5.5vw;
+    }
+
+    .landing-div h4 {
+        font-size: 2vw;
+        font-weight: 500;
+        margin-left: 5vw;
+        margin-top: 12vw;
+    }
+
+    .landing-div input {
+        background: rgba(44, 41, 41, 0.95);
+        width: 25vw;
+        height: 4vw;
+        padding: 10px;
+        border-radius: 2vw;
+        border: none;
+        color: #eee;
+        position: absolute;
+        margin-left: 5vw;
+        margin-top: 17.5vw;
+        padding-left: 2.5vw;
+        font-size: 1.5vw;
+    }
+
+    .landing-div input:focus {
+        outline: none;
+    }
+
+    .engagement-panel {
+        background: red;
+        width: 95%;
+        height: 20%;
+        margin-top: 5vw;
+        margin-left: 2.5%;
+    }
+
+    .about {
+        margin-top: 7.5vw;
+        margin-bottom: -15vw;
+    }
+
+    .about h1 {
+        font-size: 3.5vw;
+        margin-left: 5vw;
+        margin-top: 2.5vw;
+        position: absolute;
+    }
+
+    .about p {
+        position: absolute;
+        margin-left: 5.5vw;
+        margin-top: 12.5vw;
+        color: rgb(138, 138, 138);
+        font-weight: 500;
+    }
+
+    .nav-div img {
+        width: 3.5vw;
+        height: 3.5vw;
+        position: absolute;
+        margin-left: 7.5vw;
+    }
+
+    .nav-div ul {
+        list-style: none;
+        display: flex;
+        position: absolute;
+    }
+
+    .nav-div {
+        height: 3.5vw;
+        padding-top: 2.5vw;
+    }
+
+    .nav-div ul li {
+        position: absolute;
+        margin-left: 70vw;
+        font-size: 1.25vw;
+        cursor: pointer;
+        padding-top: 1.5vw;
+    }
+
+    .nav-div ul .n1 {
+        position: absolute;
+        margin-left: 75vw;
+        font-size: 1.25vw;
+        cursor: pointer;
+    }
+
+    .nav-div ul .n2 {
+        position: absolute;
+        margin-left: 80vw;
+        font-size: 1.25vw;
+    }
+
+    .nav-div ul .n3 {
+        position: absolute;
+        margin-left: 85vw;
+        font-size: 1.25vw;
+        cursor: pointer;
+    }
+
+    .about img {
+        width: 28.5vw;
+        height: 32.5vw;
+        position: absolute;
+        margin-left: 65vw;
+        margin-top: 0vw;
+    }
+
+    .rate p {
+        position: absolute;
+        color: rgb(138, 138, 138);
+        font-weight: 500;
+        margin-top: 10vw;
+        margin-left: 42.5vw;
+        font-size: 1.5vw;
+    }
+
+    .rate-icon span {
+        font-size: 3vw;
+        position: absolute;
+        margin-top: 0.85vw;
+        margin-left: 0.9vw;
+    }
+
+    .rate-icon p {
+        position: absolute;
+        font-size: 1vw;
+        margin-left: 6.75vw;
+        margin-top: 4.25vw;
+    }
+
+    .rate-icon-s {
+        width: 5vw;
+        height: 5vw;
+        background: rgba(248, 244, 244, 0.95);
+        border-radius: 100%;
+        position: absolute;
+        margin-top: .75vw;
+        margin-left: 0.65vw;
+    }
+
+    .rate-icon {
+        background: #eee;
+        height: 6.5vw;
+        width: 22.5vw;
+        border-radius: 1.5vw;
+        margin-left: 7.5vw;
+        position: absolute;
+        margin-top: 22.5vw;
+    }
+
+    .counter {
+        position: absolute;
+        margin-left: 6.5vw;
+        font-size: 2.5vw;
+        margin-top: 1.5vw;
+        font-weight: 500;
+    }
+
+    .rate-icon-1 p {
+        position: absolute;
+        font-size: 1vw;
+        margin-left: 6.75vw;
+        margin-top: 4.25vw;
+    }
+
+    .rate-icon-1 span {
+        font-size: 3vw;
+        position: absolute;
+        margin-top: 0.85vw;
+        margin-left: 0.9vw;
+    }
+
+    .rate-icon-s-1 {
+        width: 5vw;
+        height: 5vw;
+        background: rgba(248, 244, 244, 0.95);
+        border-radius: 100%;
+        position: absolute;
+        margin-top: .75vw;
+        margin-left: 0.65vw;
+    }
+
+    .rate-icon-1 {
+        background: #eee;
+        height: 6.5vw;
+        width: 22.5vw;
+        border-radius: 1.5vw;
+        margin-left: 32.5vw;
+        position: absolute;
+        margin-top: 22.5vw;
+    }
+
+    .counter-1 {
+        position: absolute;
+        margin-left: 6.5vw;
+        font-size: 2.5vw;
+        margin-top: 1.5vw;
+        font-weight: 500;
+    }
+
+    .rate-icon-1 p {
+        position: absolute;
+        font-size: 1vw;
+        margin-left: 6.75vw;
+        margin-top: 4.25vw;
+    }
+
+    .footer-div {
+        height: 5vw !important;
+        position: absolute;
+        border-top: 2px solid #eee;
+        width: 95%;
+        left: 2.5%;
+        margin-top: 50vw;
+    }
+
+    .benefit-user {
+        height: 50vw;
+        margin-top: 50vw;
+    }
+
+    .benefit-user h2 {
+        position: absolute;
+        margin-left: 5vw;
+        font-size: 2.5vw;
+        margin-top: 10vw;
+    }
+
+    .line {
+        width: 12.5vw;
+        height: 2.5px;
+        background: #111;
+        position: absolute;
+        margin-left: 5vw;
+        margin-top: 7.5vw;
+    }
+
+    .benefit-div {
+        display: flex;
+        position: absolute;
+        margin-top: 22.5vw;
+        margin-left: 5.5vw;
+    }
+
+    .benefit-div .warant-div,
+    .benefit-div .quality-div,
+    .benefit-div .package-div {
+        position: absolute;
+    }
+
+    .benefit-div span {
+        font-size: 3vw;
+    }
+
+    .benefit-div .warant-div {
+        margin-left: 30vw;
+    }
+
+    .benefit-div .quality-div {
+        margin-left: 60vw;
+    }
+
+    .benefit-div h2 {
+        position: absolute;
+        margin-top: -1.5vw;
+    }
+
+    .benefit-div p {
+        margin-top: 1.75vw;
+        margin-left: 5.5vw;
+        position: absolute;
+        font-weight: 500;
+        color: rgb(138, 138, 138);
+    }
+</style>
