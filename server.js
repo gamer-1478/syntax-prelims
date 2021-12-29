@@ -42,7 +42,6 @@ app.use(passport.session());
 
 app.use('/', bloatRouter);
 app.use('/', indexRouter);
-app.use("/admin", adminRouter)
 app.use("/", authRouter)
 app.use("/dashboard", dashboardRouter)
 app.use("/playlist", playlistRouter)
