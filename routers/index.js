@@ -12,7 +12,7 @@ indexRouter.get('/', (req, res) => {
     res.render('index', { title: "Home", description: "Home", user: req.user });
 });
 
-indexRouter.get('/song_stream/:id', (req, res) => {
+indexRouter.get('/song_stream/:id', ensureAuthenticated, (req, res) => {
     const filePath = path.join(__dirname, '../songs/' + req.params.id + '.mp3');
     const stat = fs.statSync(filePath);
     const fileSize = stat.size;
@@ -55,19 +55,19 @@ indexRouter.get('/song_stream/:id', (req, res) => {
     });
 })
 
-indexRouter.get('/song_details/:id', (req, res) => {
+indexRouter.get('/song_details/:id', ensureAuthenticated, (req, res) => {
     Song.findOne({ id: req.params.id }, (err, doc) => {
         res.send(doc)
     })
 })
 
-indexRouter.get('/search', (req, res) => {
+indexRouter.get('/search', ensureAuthenticated, (req, res) => {
     Song.find().then((result) => {
         res.render('search', { title: "Search", description: "Search", user: req.user, songs: result })
     })
 })
 
-indexRouter.post('/search', (req, res) => {
+indexRouter.post('/search', ensureAuthenticated, (req, res) => {
     Song.find({ $or: [{ name: { '$regex': req.body.query, "$options": "i" } }] }).then((result) => {
         res.render('search', { title: "Search", description: "Search", user: req.user, songs: result });
 
