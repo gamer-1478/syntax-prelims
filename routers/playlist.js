@@ -70,9 +70,9 @@ playlistRouter.get("/:id/allsongid", ensureAuthenticated, async (req, res) => {
         if (doc) {
             if (req.params.id != 'liked') {
                 let index = doc.playlists.findIndex(x => x.id == req.params.id)
-                res.send(doc.playlists[index].songs.map(x => x))
+                res.send(doc.playlists[index].songs)
             } else {
-                res.send(doc.liked.map(x => x))
+                res.send(doc.liked)
             }
         }
         else {
