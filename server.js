@@ -12,10 +12,13 @@ const express = require('express'),
     passport = require('passport'),
     dashboardRouter = require("./routers/dashboard"),
     playlistRouter = require("./routers/playlist"),
-    profileRouter = require("./routers/profile");
+    profileRouter = require("./routers/profile"),
+    flash = require('express-flash');
+
 //ejs
 app.set('view engine', 'ejs');
 app.use(expressLayouts);
+app.use(flash())
 
 //passportJs
 

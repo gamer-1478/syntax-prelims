@@ -17,6 +17,13 @@
             class="img" alt="">
     </div>
 </body>
+<script>
+    var notyf = new Notyf();
+    <% if (messages.error) { %>
+        let err = "<%= messages.error %>"
+        notyf.error(err);
+    <% } %>
+</script>
 <style>
     .form-div {
         display: flex;
